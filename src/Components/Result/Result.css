@@ -1,0 +1,7 @@
+:root {
+    --td-border: 3px solid black;
+}
+
+.result-table td {
+    border: var(--td-border);
+}
