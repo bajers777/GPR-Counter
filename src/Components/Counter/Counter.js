@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
-
+import Shortcuts from './Shortcuts';
+import TimeCounter from './TimeCounter';
+import './Counter.css';
 
 const Counter = props => {
     const counterKeyShortcut = e => {
@@ -87,8 +89,9 @@ const Counter = props => {
         }
     })
     return (
-        <div>
-            Counter working....
+        <div className='counter'>
+            <TimeCounter />
+            <Shortcuts />
         </div>
     )
 }

@@ -6,7 +6,7 @@ import './Result.css';
 const Result = props => {
     const [pathValue, setPathValue] = useState(1);
 
-    const defaultDirection = props.data.filter(item => item.path == pathValue).map(item => item.survey).map(item => item.map(item => item.directions)).pop().map(item => item.filter(item => item.direction === 'LEFT').pop());
+    const defaultDirection = props.data.filter(item => item.path == pathValue).map(item => item.survey).map(item => item.map(item => item.directions)).pop().map(item => item.filter(item => item.direction === 'UPRIGHT').pop());
     const [surveyDirection, setSurveyDirection] = useState(defaultDirection);
 
     const setDirection = e => {
@@ -20,6 +20,7 @@ const Result = props => {
 
 
         const directions = survey.map(item => item.directions).map(item => item.filter(item => item.direction == e.target.getAttribute('data-direction')).pop());
+
         // 0: { direction: 'UPRIGHT', ammount: 0 }
         // 1: { direction: 'UPRIGHT', ammount: 0 }
         // 2: { direction: 'UPRIGHT', ammount: 0 }
@@ -36,7 +37,7 @@ const Result = props => {
             <ResultButton data-direction='LEFT' onClick={setDirection}>LEWO</ResultButton>
             <ResultButton data-direction='UPRIGHT' onClick={setDirection}>PROSTO</ResultButton>
             <ResultButton data-direction='RIGHT' onClick={setDirection}>PRAWO</ResultButton>
-            <ResultTable pathValue={pathValue} surveyDirection={surveyDirection} data={props.data} />
+            <ResultTable pathValue={pathValue} surveyDirection={surveyDirection} interval={props.interval} intervalCounter={props.intervalCounter} data={props.data} />
         </div>
     )
 }

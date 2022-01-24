@@ -1,13 +1,15 @@
 import React from 'react';
-import ResultCell from './ResultCell';
+import Interval from './Interval';
 
 const ResultTable = props => {
-    const { data, pathValue, surveyDirection } = props;
-    const type = data.filter(item => item.path == pathValue).map(item => item.survey).map(item => item.map(item => item.type)).pop();
+    // const interval = data.map(item => item.interval).shift();
     return (
         <table className='result-table'>
             <thead>
                 <tr>
+                    <td>
+                        Interwał
+                    </td>
                     <td>
                         Motocykle
                     </td>
@@ -36,16 +38,13 @@ const ResultTable = props => {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    {
-                        surveyDirection.map((item, index) => {
-                            return <ResultCell key={type[index]} ammount={item.ammount} />
-                        })
-                    }
-                </tr>
+                {
+                    props.intervalCounter > 0 ? <Interval data={props.data} interval={props.interval} pathValue={props.pathValue} surveyDirection={props.surveyDirection} /> : ''
+                }
             </tbody>
         </table>
     )
 }
+// surveyDirection.map((item, index) => <ResultCell key={type[index]} ammount={item.ammount} />)
 
 export default ResultTable
