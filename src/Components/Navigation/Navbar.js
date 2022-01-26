@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import NavbarButton from '../../UI/NavbarButton';
 
 const Navbar = props => {
     const handleSetInterval = () => {
-        const interval = [':00 - :15', ':15 - :30', ':30 - :45', ':45 - 00'];
-        props.setInterval(interval[props.intervalCounter]);
-        props.setIntervalSurvey(props.data.map(item => item));
-        props.dispatch('END_SURVEY');
-        return props.intervalCounter === 3 ? props.setIntervalCounter(0) : props.setIntervalCounter(props.intervalCounter + 1);
+        const intervalBase = [':00 - :15', ':15 - :30', ':30 - :45', ':45 - 00'];
+        const interval = intervalBase[props.intervalCounter];
+        const data = [...props.data];
+        props.setInterval(interval);
+        props.setIntervalSurvey(prevState => {
+            return [{ interval, survey: data }, ...prevState]
+        });
+        return props.intervalCounter < 4 ? props.setIntervalCounter(prevState => prevState + 1) : props.setIntervalCounter(0);
     }
     return (
         <div>

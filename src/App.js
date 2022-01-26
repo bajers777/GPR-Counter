@@ -1,37 +1,41 @@
-import React, { useState, useReducer } from 'react';
+import React, { useState, useEffect } from 'react';
 import Result from './Components/Result/Result';
 import Counter from './Components/Counter/Counter';
 import Navbar from './Components/Navigation/Navbar';
 
-const reducer = (state, action) => {
-  if (action === 'END_SURVEY') {
-    state.forEach(item => {
-      item.survey.map(item => item.directions).map(item => {
-        item.map(item => item.ammount = 0)
-      })
-    })
-  }
-  else {
-    state.forEach(pathItem => {
-      //search in state array proper path value that user clicked
-      if (pathItem.path === action.path) {
-        //if it correct search for proper index of clicked key
-        //searching all array with 'path: x' value. Array contains object with structure: {type: 'CAR_PERSONAL', directions: Array(3)}
-        const carTypeIndex = pathItem.survey.map(item => item.type).indexOf(action.type); //get array id 
-        pathItem.survey[carTypeIndex].directions.forEach(carSurveyValue => {
-          //searching proper type e.q key 'q' responds 'CAR_PERSONAL' type and increase right value
-          if (carSurveyValue.direction === action.direction) {
-            carSurveyValue.ammount++;
-          }
-        });
-      }
-    })
-  }
-  return state;
-}
+// const reducer = (state, action) => {
+//   if (action === 'END_SURVEY') {
+//     state.forEach(item => {
+//       item.survey.map(item => item.directions).map(item => {
+//         item.map(item => item.ammount = 0)
+//       })
+//     })
+//     return state;
+//   }
+//   else {
+//     const survey = [...state];
+//     state.forEach(pathItem => {
+//       //search in state array proper path value that user clicked
+//       if (pathItem.path === action.path) {
+//         //if it correct search for proper index of clicked key
+//         //searching all array with 'path: x' value. Array contains object with structure: {type: 'CAR_PERSONAL', directions: Array(3)}
+//         const carTypeIndex = pathItem.survey.map(item => item.type).indexOf(action.type); //get array id 
+//         pathItem.survey[carTypeIndex].directions.forEach(carSurveyValue => {
+//           //searching proper type e.q key 'q' responds 'CAR_PERSONAL' type and increase right value
+//           if (carSurveyValue.direction === action.direction) {
+//             carSurveyValue.ammount++;
+//           }
+//         });
+//       }
+//     })
+//     console.log(survey);
+//     return survey;
+//   }
+// }
 
 const App = () => {
-  const [carSurvey, dispatch] = useReducer(reducer, [
+  // const [carSurvey, dispatch] = useReducer(reducer,
+  const carSurveyDefault = [
     {
       path: 1, survey: [
         // {
@@ -187,27 +191,39 @@ const App = () => {
         },
       ]
     },
-  ]);
+  ];
+
+  const [carSurvey, setCarSurvey] = useState(carSurveyDefault);
   const [interval, setInterval] = useState();
   const [intervalCounter, setIntervalCounter] = useState(0);
-  const [intervalSurvey, setIntervalSurvey] = useState();
+  const [intervalSurvey, setIntervalSurvey] = useState([]);
+
+
+  useEffect(() => {
+    setCarSurvey(carSurveyDefault);
+  }, [interval]);
+
+
   return (
     <>
       <Navbar
         data={carSurvey}
-        setInterval={setInterval}
-        dispatch={dispatch}
         intervalCounter={intervalCounter}
+        setIntervalCounter={setIntervalCounter}
+        setInterval={setInterval}
         setIntervalSurvey={setIntervalSurvey}
-        setIntervalCounter={setIntervalCounter} />
+      />
       <Counter
-        dispatch={dispatch} />
+        data={carSurvey}
+        setCarSurvey={setCarSurvey} />
 
       <Result
         data={carSurvey}
         interval={interval}
-        intervalCounter={intervalCounter} />
-      <button onClick={() => console.log(intervalSurvey)}>Pokaż pomiary</button>
+        intervalCounter={intervalCounter}
+        intervalSurvey={intervalSurvey}
+      />
+      <button onClick={() => console.log(carSurvey, intervalSurvey)}>Pokaż pomiary</button>
     </>
   )
 }

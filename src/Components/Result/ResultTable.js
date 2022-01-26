@@ -2,7 +2,6 @@ import React from 'react';
 import Interval from './Interval';
 
 const ResultTable = props => {
-    // const interval = data.map(item => item.interval).shift();
     return (
         <table className='result-table'>
             <thead>
@@ -38,9 +37,9 @@ const ResultTable = props => {
                 </tr>
             </thead>
             <tbody>
-                {
-                    props.intervalCounter > 0 ? <Interval data={props.data} interval={props.interval} pathValue={props.pathValue} surveyDirection={props.surveyDirection} /> : ''
-                }
+
+                <Interval data={props.data} interval={props.interval} pathValue={props.pathValue} surveyDirection={props.surveyDirection} intervalSurvey={props.intervalSurvey} />
+
             </tbody>
         </table>
     )
