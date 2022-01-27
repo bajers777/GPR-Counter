@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import ResultDirection from './ResultDirection';
 import ResultButton from '../../UI/ResultButton';
 import ResultTable from './ResultTable';
+
+
 import './Result.css';
 const Result = props => {
     const [pathValue, setPathValue] = useState(1);
@@ -36,18 +38,7 @@ const Result = props => {
             <ResultButton data-direction='LEFT' onClick={setFilter}>LEWO</ResultButton>
             <ResultButton data-direction='UPRIGHT' onClick={setFilter}>PROSTO</ResultButton>
             <ResultButton data-direction='RIGHT' onClick={setFilter}>PRAWO</ResultButton>
-
-            {
-                filterOption && <ResultTable
-                    pathValue={pathValue}
-                    interval={props.interval}
-                    data={props.data}
-                    intervalCounter={props.intervalCounter}
-                    intervalSurvey={props.intervalSurvey}
-                />
-
-
-            }
+            <ResultTable pathValue={pathValue} filterOption={filterOption} />
         </div>
     )
 }

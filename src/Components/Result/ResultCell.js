@@ -2,7 +2,7 @@ import React from 'react';
 const ResultCell = props => {
     return (
         <td>
-            {props.ammount}
+            {props.data.ammount}
         </td>
     )
 }
