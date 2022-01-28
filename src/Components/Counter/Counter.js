@@ -140,10 +140,8 @@ const Counter = props => {
     }, [interval]);
 
     return (
-        <div className='counter'>
-            <TimeCounter />
-            <Shortcuts />
-        </div>
+        <>
+        </>
     )
 }
 

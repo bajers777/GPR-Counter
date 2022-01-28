@@ -1,0 +1,158 @@
+/* Main style file
+========================================================================== */
+
+@use '_variables'as *;
+@use 'extends';
+@use 'buttons';
+
+#root {
+    @extend %flex-row;
+    height: 100vh;
+    background-color: $bg-grayish;
+}
+
+.counter-app {
+    @extend %flex-column;
+    width: 100%;
+    padding: 2rem;
+    position: relative;
+}
+
+.sidebar {
+    @extend %flex-column;
+    width: 250px;
+    padding: 2rem;
+    background-color: $main-color;
+    color: $text-main;
+
+    h2 {
+        border-bottom: $border-thead;
+        font-weight: $sidebar-header-font;
+        padding-bottom: 1rem;
+    }
+
+    b {
+        font-weight: $sidebar-text-font;
+    }
+
+    &__pill {
+        @extend %flex-row;
+        padding: .5rem;
+        cursor: pointer;
+
+        img {
+            width: 20px;
+            padding-right: .5rem;
+        }
+
+        &:hover {
+            background-color: $secondary-color;
+            border-radius: .25rem;
+        }
+
+    }
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    width: 100%;
+    background-color: $bg-white;
+
+    button {
+        margin: .5rem;
+    }
+}
+
+.result {
+    margin-top: 5rem;
+
+
+    table {
+        width: 100%;
+
+        thead {
+            color: $text-table;
+            font-weight: $table-text-font;
+            font-size: 12px;
+
+            tr {
+                @extend %flex-row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 0;
+                width: 100%;
+                border-top: $border-thead;
+                border-bottom: $border-thead;
+
+                td {
+                    &:first-child {
+                        text-align: left;
+                    }
+
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+
+        tbody {
+            tr {
+                @extend %flex-row;
+                justify-content: space-between;
+
+
+                td {
+                    &:first-child {
+                        text-align: left;
+                    }
+
+                    padding: .5rem 0;
+                    width: 100%;
+                    text-align: center;
+                    border-bottom: $border-tbody;
+
+                }
+            }
+
+        }
+    }
+
+    .result-navbar {
+        @extend %flex-row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-radius: 1rem 1rem 0 0;
+        background-color: $bg-white;
+
+        .result-navbar__main-group {
+            @extend %flex-row;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                margin: .5rem;
+            }
+
+
+            .direction-select {
+                position: relative;
+                width: 100%;
+
+                select {
+                    padding: .75rem 0;
+                    padding-right: 3rem;
+                    padding-left: .5rem;
+                    background-color: transparent;
+                    border-radius: .25rem;
+                    border: 3px solid $select-color;
+                    text-align: left;
+                    color: $select-color;
+                }
+            }
+        }
+    }
+}

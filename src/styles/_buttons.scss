@@ -1,0 +1,49 @@
+@use 'variables'as *;
+
+.primary-btn {
+    padding: .75rem 1.5rem;
+    background-color: $secondary-color;
+    border: none;
+    border-radius: .25rem;
+    color: $text-main;
+    letter-spacing: 1.5px;
+    font-weight: $button-primary-font;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $button-secondary-color;
+    }
+
+}
+
+.inactive {
+    background-color: $select-color;
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: .25rem;
+    color: $text-main;
+    letter-spacing: 1.5px;
+    font-weight: $button-primary-font;
+}
+
+.secondary-btn {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    color: $button-secondary-color;
+    border: none;
+    background-color: transparent;
+    font-weight: $button-secondary-font;
+    letter-spacing: 1px;
+    cursor: pointer;
+
+    img {
+        width: 20px;
+        margin-right: .5rem;
+    }
+
+    &:hover {
+        color: $main-color;
+        letter-spacing: 1.1px;
+    }
+}

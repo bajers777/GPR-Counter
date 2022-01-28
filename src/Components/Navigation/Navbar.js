@@ -16,8 +16,9 @@ const Navbar = props => {
         return intervalCounter < 4 ? setIntervalCounter(prevState => prevState + 1) : setIntervalCounter(0);
     }
     return (
-        <div>
-            <NavbarButton onClick={handleSetInterval}>Zakończ interwał</NavbarButton>
+        <div className='navbar'>
+            <button className='primary-btn' onClick={handleSetInterval}>Zakończ interwał</button>
+            <button className='inactive' onClick={() => alert('Przycisk nieaktywny!')}>Zakończ godzinę</button>
         </div>
     );
 };
