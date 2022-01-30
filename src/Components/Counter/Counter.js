@@ -1,6 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import Shortcuts from './Shortcuts';
-import TimeCounter from './TimeCounter';
+import React, { useContext, useEffect } from 'react';
 
 import { IntervalCtx } from '../../Contexts/Interval/IntervalContext';
 import { SurveyCtx } from '../../Contexts/SurveyContext/SurveyContext';
@@ -136,7 +134,7 @@ const Counter = props => {
     //Reset to default value and start counting from begining
 
     useEffect(() => {
-        interval ? addToSurvey('END_SURVEY') : console.log(interval);
+        interval && addToSurvey('END_SURVEY');
     }, [interval]);
 
     return (

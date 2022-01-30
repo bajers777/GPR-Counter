@@ -16,6 +16,8 @@ const Result = props => {
             <div className="result-navbar">
                 <div className="result-navbar__main-group">
                     <ResultDirection setPathValue={setPathValue} />
+
+
                     <button className='primary-btn' data-direction='LEFT' onClick={setFilter}>Lewo</button>
                     <button className='primary-btn' data-direction='UPRIGHT' onClick={setFilter}>Prosto</button>
                     <button className='primary-btn' data-direction='RIGHT' onClick={setFilter}>Prawo</button>
