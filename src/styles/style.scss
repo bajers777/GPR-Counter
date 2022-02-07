@@ -4,6 +4,7 @@
 @use '_variables'as *;
 @use 'extends';
 @use 'buttons';
+@use 'modals';
 
 #root {
     @extend %flex-row;
@@ -18,9 +19,10 @@
     position: relative;
 }
 
+//SIDEBAR
 .sidebar {
     @extend %flex-column;
-    width: 250px;
+    min-width: 250px;
     padding: 2rem;
     background-color: $main-color;
     color: $text-main;
@@ -39,6 +41,9 @@
         @extend %flex-row;
         padding: .5rem;
         cursor: pointer;
+        background-color: transparent;
+        border-style: none;
+        color: $bg-white;
 
         img {
             width: 20px;
@@ -60,12 +65,14 @@
     margin: 0;
     width: 100%;
     background-color: $bg-white;
+    z-index: 0;
 
     button {
         margin: .5rem;
     }
 }
 
+//COUNTER APP TAB
 .result {
     margin-top: 5rem;
 
@@ -153,6 +160,20 @@
                     color: $select-color;
                 }
             }
+        }
+    }
+}
+
+//MOVIES TAB
+
+.movies {
+    @extend %flex-column;
+
+    &__cell {
+        @extend %flex-row;
+
+        b {
+            padding: 1rem;
         }
     }
 }

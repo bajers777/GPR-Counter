@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
-import NavbarButton from '../../UI/NavbarButton';
-import { IntervalCtx } from '../../Contexts/Interval/IntervalContext';
-import { SurveyCtx } from '../../Contexts/SurveyContext/SurveyContext';
+import { IntervalCtx } from '../../../contexts/interval/IntervalContext';
+import { SurveyCtx } from '../../../contexts/survey/SurveyContext';
 
 
 const Navbar = props => {

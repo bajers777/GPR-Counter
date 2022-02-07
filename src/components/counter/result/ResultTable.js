@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import Interval from './Interval';
-import { SurveyCtx } from '../../Contexts/SurveyContext/SurveyContext';
+import { SurveyCtx } from '../../../contexts/survey/SurveyContext';
 
 const ResultTable = props => {
     const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault] = useContext(SurveyCtx);

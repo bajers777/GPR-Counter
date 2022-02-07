@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 
-import { IntervalCtx } from '../../Contexts/Interval/IntervalContext';
-import { SurveyCtx } from '../../Contexts/SurveyContext/SurveyContext';
+import { IntervalCtx } from '../../contexts/interval/IntervalContext';
+import { SurveyCtx } from '../../contexts/survey/SurveyContext';
 import './Counter.css';
 
 const Counter = props => {

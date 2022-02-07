@@ -1,0 +1,33 @@
+@use 'variables'as *;
+
+#modal {
+    position: relative;
+}
+
+.modal-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: $bg-modal-overlay;
+    z-index: 1;
+}
+
+.modal {
+    z-index: 1;
+    position: absolute;
+    left: 15%;
+    top: 15;
+    transform: translate(-10%, 15%);
+
+    &__keyshortcuts {
+
+        img {
+            width: 100%;
+        }
+    }
+
+}
+
+.hidden {
+    display: none;
+}

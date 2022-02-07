@@ -1,10 +1,10 @@
 import React from 'react';
 const SidebarPill = props => {
     return (
-        <div className="sidebar__pill">
+        <button onClick={props.handleNavPillButton} data-type={props.dataType} className="sidebar__pill">
             <img src={props.imgSrc} alt="" />
             <b>{props.pillName}</b>
-        </div>
+        </button>
     );
 };
 
