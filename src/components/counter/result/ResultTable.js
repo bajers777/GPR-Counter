@@ -40,7 +40,7 @@ const ResultTable = props => {
             </thead>
             <tbody>
                 {
-                    intervalSurvey.map(item => <Interval key={item.interval} interval={item.interval} data={item.survey} pathValue={props.pathValue} filterOption={props.filterOption} />)
+                    intervalSurvey.map(item => <Interval key={item.interval} interval={item.activeInterval} data={item.survey} pathValue={props.pathValue} filterOption={props.filterOption} />)
                 }
 
             </tbody>

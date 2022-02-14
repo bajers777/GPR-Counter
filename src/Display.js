@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ActivePillCtx } from './contexts/sidebar/ActivePillContext';
 import CounterApp from './components/counter/CounterApp';
 import Survey from './components/surveys/Survey';
 import Movies from './components/movies/Movies';
+import Request from './components/request/Request';
 const Display = props => {
     const [activePill, setActivePill] = useContext(ActivePillCtx);
     const handleDisplayShow = () => {
@@ -14,8 +15,7 @@ const Display = props => {
             case 'movies':
                 return <Movies />
             case 'request':
-                props.picker.open();
-                break;
+                return <Request />
             default:
                 break;
         }

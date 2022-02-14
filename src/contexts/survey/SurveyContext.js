@@ -190,10 +190,13 @@ const SurveyContext = props => {
 
     const [intervalSurvey, setIntervalSurvey] = useState([]);
     const [surveyCounter, setSurveyCounter] = useState(carSurveyDefault);
+    const [surveyResult, setSurveyResult] = useState([]);
+    const [surveySpot, setSurveySpot] = useState();
+    const [isSurveySpotSet, setSurveySpotStatus] = useState(false);
     return (
         <>
             <SurveyCtx.Provider
-                value={[intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault]}
+                value={[intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus]}
             >
                 {props.children}
             </SurveyCtx.Provider>
