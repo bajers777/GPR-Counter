@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import Sidebar from './components/navigation/sidebar/Sidebar';
-import Keyshortcuts from './components/modals/Keyshortcuts';
 import Display from './Display';
 //Contexts
 import ModalContext from './contexts/modal/ModalContext';
@@ -10,19 +9,20 @@ import IntervalContext from './contexts/interval/IntervalContext';
 
 import AuthContext from './contexts/auth/AuthContext';
 //firebase connection
-import { handleDatabaseRequest } from './firebase';
+import { getData, postData } from './firebase';
 //CSS
 import './styles/style.scss';
+
 const App = () => {
   useEffect(() => {
-    return handleDatabaseRequest('GET_DATA');
+    getData('inprogress');
   }, []);
 
   return (
     <>
       {/* <AuthContext> */}
       <ModalContext>
-        <Keyshortcuts />
+        {/* <Keyshortcuts /> */}
         <ActivePillContext>
           <IntervalContext >
             <SurveyContext>

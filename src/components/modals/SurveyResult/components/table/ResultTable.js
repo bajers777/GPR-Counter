@@ -1,9 +1,7 @@
-import React, { useContext } from 'react';
-import Interval from './Interval';
-import { SurveyCtx } from '../../../contexts/survey/SurveyContext';
+import React from 'react'
 
 const ResultTable = props => {
-    const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault] = useContext(SurveyCtx);
+
     return (
         <table className='result-table'>
             <thead>
@@ -39,14 +37,11 @@ const ResultTable = props => {
                 </tr>
             </thead>
             <tbody>
-                {
-                    intervalSurvey.map(item => <Interval key={item.interval} interval={item.activeInterval} data={item.survey} pathValue={props.pathValue} filterOption={props.filterOption} />)
-                }
-
+                {/* {activeSurveyResult.map(item => <TableRow key={item.hourId} hourId={item.hourId} survey={item.survey} />)} */}
             </tbody>
         </table>
+
     )
 }
-// surveyDirection.map((item, index) => <ResultCell key={type[index]} ammount={item.ammount} />)
 
 export default ResultTable

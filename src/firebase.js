@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, getDoc, runTransaction, doc, updateDoc } from "firebase/firestore/lite";
+import { getFirestore, collection, getDocs, get, runTransaction, doc, updateDoc, getDoc, deleteDoc } from "firebase/firestore/lite";
 // Your web app's Firebase configuration
 const app = initializeApp({
     apiKey: process.env.REACT_APP_API_KEY,
@@ -10,48 +10,57 @@ const app = initializeApp({
     appId: process.env.REACT_APP_APP_ID
 });
 
-// export const auth = app.auth();
 export const db = getFirestore(app);
-export const usersCollection = collection(db, 'users');
 const testUser = 'LB';
 const user = doc(db, 'users', testUser);
 
-export async function handleDatabaseRequest(type, activeSurvey, updateType, updateData) {
-    const inProgress = (await getDocs(collection(user, 'inProgress'))).docs.map(item => item.data());
-    const surveyResult = JSON.parse(localStorage.getItem('SURVEY_RESULT'));
-    try {
-        switch (type) {
-            case 'UPDATE_SURVEY':
-                const inProgressDoc = doc(user, 'inProgress', activeSurvey.name);
-                const completedDoc = doc(user, 'completed', activeSurvey.name);
-                switch (updateType) {
-                    case 'UPDATE_VALUE':
+export const postData = async (type, activeSurvey, updateData) => {
 
-                        // try {
-                        //     await runTransaction(db, async (transaction) => {
-                        //         return transaction.update(inProgressDoc, { surveyResult });
-                        //     })
-                        // } catch (err) {
-                        //     console.log(err);
-                        // }
-                        // return updateDoc(inProgressDoc, { surveyResult });
-                        break;
-                    case 'UPDATE_STATUS':
-                        console.log(inProgressDoc);
-                        return updateDoc(inProgressDoc, { status: updateData })
-                        break;
-                    default:
-                        break;
+    const activeItemSurveyResult = JSON.parse(localStorage.getItem('ACTIVE_SURVEY'));
+    try {
+        const inProgressDoc = doc(user, 'movies', activeSurvey.name);
+        switch (type) {
+            case 'UPDATE_VALUE':
+                try {
+                    await runTransaction(db, async (transaction) => {
+                        return transaction.update(inProgressDoc, { surveyResult: activeItemSurveyResult });
+                    })
+                } catch (err) {
+
                 }
+                // return updateDoc(inProgressDoc, { survey: surveyResult });
+
                 break;
-            case 'GET_DATA':
-                return localStorage.setItem('ACTIVE_USER_MOVIES_LIST', JSON.stringify(inProgress));
-            case 'PRINT_SURVEYS':
+            case 'UPDATE_STATUS':
+                // 
+                // return updateDoc(inProgressDoc, { status: updateData })
+                break;
+            default:
                 break;
         }
     } catch (err) {
-        console.log(err);
+
+    }
+}
+
+export const getData = async (type) => {
+    try {
+        const moviesList = (await getDocs(collection(user, 'movies'))).docs.map(item => item.data())
+        switch (type) {
+            case 'inprogress':
+                return localStorage.setItem('ACTIVE_USER_MOVIES_LIST', JSON.stringify(moviesList));
+            case 'completed':
+                const completedList = moviesList.filter(item => item.status);
+
+                return localStorage.setItem('ACTIVE_USER_COMPLETED_LIST', JSON.stringify(completedList));
+            default:
+                break;
+        }
+
+    } catch (err) {
+
     }
 }
 
 export default app;
+

@@ -9,8 +9,9 @@ import { SurveyCtx } from '../../contexts/survey/SurveyContext';
 const Counter = props => {
 
 
-    const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
+    // const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
     const { handleCounterAction } = props;
+    const data = JSON.parse(localStorage.getItem('INTERVAL_SURVEY'));
     const counterKeyShortcut = e => {
         switch (e.code) {
             case 'KeyQ':
@@ -127,13 +128,13 @@ const Counter = props => {
     //     const activeInterval = localStorage.getItem('ACTIVE_INTERVAL');
 
     //     interval && handleCounterAction('END_INTERVAL');
-    //     console.log(activeInterval);
+    //     activeInterval);
     // }, [interval]);
 
     return (
         <>
             <Navbar handleCounterAction={handleCounterAction} />
-            <Result />
+            <Result data={data === null ? [] : data} />
         </>
     )
 }

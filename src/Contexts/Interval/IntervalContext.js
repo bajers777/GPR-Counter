@@ -6,11 +6,11 @@ export const IntervalCtx = React.createContext();
 
 const IntervalContext = props => {
     const [interval, setInterval] = useState();
-    const [isActive, setActive] = useState(true);
+    const [isActiveInterval, setActiveInterval] = useState(true);
     return (
         <>
             <IntervalCtx.Provider
-                value={[interval, setInterval, isActive, setActive]}
+                value={[interval, setInterval, isActiveInterval, setActiveInterval]}
             >
                 {props.children}
             </IntervalCtx.Provider>

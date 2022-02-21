@@ -1,5 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ActivePillCtx } from './contexts/sidebar/ActivePillContext';
+//firebase
+//components
 import CounterApp from './components/counter/CounterApp';
 import Survey from './components/surveys/Survey';
 import Movies from './components/movies/Movies';

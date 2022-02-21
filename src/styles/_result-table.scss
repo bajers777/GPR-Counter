@@ -1,0 +1,66 @@
+@use '_variables'as *;
+@use 'extends';
+@use 'buttons';
+
+.result-table {
+    width: 100%;
+
+    &__head {
+        color: $text-table;
+        font-weight: $table-text-font;
+        font-size: 12px;
+
+        tr {
+            @extend %flex-row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            width: 100%;
+            border-top: $border-thead;
+            border-bottom: $border-thead;
+
+            td {
+                &:first-child {
+                    text-align: left;
+                }
+
+                width: 100%;
+                text-align: center;
+            }
+        }
+    }
+
+    &__body {
+
+        tr {
+            @extend %flex-row;
+            justify-content: space-between;
+
+            &--interval {
+                text-align: left;
+            }
+
+            &--cell {
+                padding: .5rem 0;
+                width: 100%;
+                text-align: center;
+                border-bottom: $border-tbody;
+            }
+        }
+
+    }
+
+    &__hour {
+        tr {
+            @extend %flex-row;
+            width: 100%;
+        }
+
+        td {
+            width: 100%;
+            text-align: center;
+        }
+    }
+
+
+}

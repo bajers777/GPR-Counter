@@ -7,9 +7,8 @@ import SurveySpot from './SurveySpot';
 import { IntervalCtx } from '../../contexts/interval/IntervalContext';
 import { SurveyCtx } from '../../contexts/survey/SurveyContext';
 
-const CounterApp = () => {
+const CounterApp = props => {
     const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
-    const [interval, setInterval] = useContext(IntervalCtx);
 
     const handleCounterAction = (type, direction, path) => {
         const data = carSurveyDefault;
@@ -25,9 +24,8 @@ const CounterApp = () => {
             return data.filter(itemPath => itemPath.path === path).map(itemSurvey => itemSurvey.survey.filter(itemType => itemType.type === type)).pop().map(itemDirections => itemDirections.directions.filter(itemDirection => itemDirection.direction === direction)).pop().map(itemAmmount => itemAmmount.ammount++);
         }
     }
-
     useEffect(() => {
-        const isActive = localStorage.getItem('ACTIVE_SURVEY');
+        const isActive = localStorage.getItem('ACTIVE_ITEM');
         return isActive && setSurveySpotStatus(true);
     }, []);
 

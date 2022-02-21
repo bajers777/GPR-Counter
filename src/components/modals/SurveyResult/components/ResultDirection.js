@@ -4,7 +4,6 @@ const ResultDirection = props => {
     const handleDirectionChange = e => {
         props.setPathValue(e.target.value);
     }
-
     return (
         <div className="direction-select">
             <select onChange={handleDirectionChange}>

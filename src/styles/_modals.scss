@@ -20,12 +20,12 @@
     transform: translate(-10%, 15%);
 
     &__keyshortcuts {
+        z-index: 9999;
 
         img {
             width: 100%;
         }
     }
-
 }
 
 .hidden {

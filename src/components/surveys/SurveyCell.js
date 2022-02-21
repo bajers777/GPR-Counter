@@ -1,31 +1,27 @@
 import React, { useContext } from 'react';
-import { handleDatabaseRequest } from '../../firebase';
-const SurveyCell = props => {
-    const { name, date, status } = props;
+import { getData, postData } from '../../firebase';
+import { ModalCtx } from '../../contexts/modal/ModalContext';
+import ModalOverlay from '../modals/ModalOverlay';
 
-    const handleButtonClick = e => {
-        const key = e.currentTarget.getAttribute('data-type');
-        switch (key) {
-            case 'SHOW_SURVEY':
-                console.log('show survey modal');
-                break;
-            case 'CHANGE_STATUS':
-                //handleDatabaseRequest(type, activeSurvey, updateType, updateData)
-                const activeUserMoviesList = JSON.parse(localStorage.getItem('ACTIVE_USER_MOVIES_LIST'));
-                const activeSurvey = activeUserMoviesList.filter(item => item.name === e.target.parentElement.querySelector('.survey__cell--name').innerText).pop();
-                return handleDatabaseRequest('UPDATE_SURVEY', activeSurvey, 'UPDATE_STATUS', true);
-            default:
-                break;
-        }
+const SurveyCell = props => {
+
+    const { name, date, status } = props;
+    const [isActiveModal, setActiveModal, modalData, setModalData, handleModalVisibility] = useContext(ModalCtx);
+
+    const handleChangeStatusButton = e => {
+        //postData(type, activeSurvey, updateType, updateData)
+        const activeUserMoviesList = JSON.parse(localStorage.getItem('ACTIVE_USER_MOVIES_LIST'));
+        const activeSurvey = activeUserMoviesList.filter(item => item.name === e.target.parentElement.querySelector('.survey__cell--name').innerText).pop();
+        // return postData('UPDATE_STATUS', activeSurvey, true);
     }
     return (
         <div className="survey__cell">
             <b>Nazwa punktu:</b> <p className='survey__cell--name'>{name}</p>
             <b>Data:</b> <p>{date}</p>
-            <b>Status:</b>{status ? <><p>Pomiar zakończony</p> <button data-type="SHOW_SURVEY" onClick={handleButtonClick}>Pokaż pomiar</button></> : <><p>W trakcie pomiaru</p> <button data-type="CHANGE_STATUS" onClick={handleButtonClick}>Zakończ pomiar</button></>}
-
+            <b>Status:</b>{status ? <><p>Pomiar zakończony</p> <button data-type='survey-result' onClick={handleModalVisibility}>Pokaż pomiar</button></> : <><p>W trakcie pomiaru</p> <button onClick={handleChangeStatusButton}>Zakończ pomiar</button></>}
         </div>
     )
 }
+
 
 export default SurveyCell

@@ -76,57 +76,6 @@
 .result {
     margin-top: 5rem;
 
-
-    table {
-        width: 100%;
-
-        thead {
-            color: $text-table;
-            font-weight: $table-text-font;
-            font-size: 12px;
-
-            tr {
-                @extend %flex-row;
-                justify-content: space-between;
-                align-items: center;
-                padding: 1rem 0;
-                width: 100%;
-                border-top: $border-thead;
-                border-bottom: $border-thead;
-
-                td {
-                    &:first-child {
-                        text-align: left;
-                    }
-
-                    width: 100%;
-                    text-align: center;
-                }
-            }
-        }
-
-        tbody {
-            tr {
-                @extend %flex-row;
-                justify-content: space-between;
-
-
-                td {
-                    &:first-child {
-                        text-align: left;
-                    }
-
-                    padding: .5rem 0;
-                    width: 100%;
-                    text-align: center;
-                    border-bottom: $border-tbody;
-
-                }
-            }
-
-        }
-    }
-
     .result-navbar {
         @extend %flex-row;
         align-items: center;
