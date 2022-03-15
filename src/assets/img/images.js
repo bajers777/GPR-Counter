@@ -1,3 +1,3 @@
 import ShortcutsImage from './keyshortcuts.png';
-
-export { ShortcutsImage };
+import LoginBackground from './login-bg.webp';
+export { ShortcutsImage, LoginBackground };

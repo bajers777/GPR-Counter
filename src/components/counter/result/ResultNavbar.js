@@ -14,10 +14,8 @@ const ResultNavbar = props => {
                 <button className='primary-btn' data-direction='UPRIGHT' onClick={setFilter}>Prosto</button>
                 <button className='primary-btn' data-direction='RIGHT' onClick={setFilter}>Prawo</button>
             </div>
-            {
-                props.modalType === 'keyshortcuts' ? <button className='secondary-btn' data-type='keyshortcuts' onClick={handleModalVisibility}><img src={ShortcutsIcon} alt="Shortcut icon" /> Skróty klawiszowe</button> : ''
-            }
-            {/* <ModalOverlay type='keyshortcuts' /> */}
+            {(modalData.type === null || modalData.type === 'keyshortcuts') && <button className='secondary-btn' data-type='keyshortcuts' onClick={handleModalVisibility}><img src={ShortcutsIcon} alt="Shortcut icon" /> Skróty klawiszowe</button>}
+
         </div>
     )
 }

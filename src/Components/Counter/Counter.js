@@ -1,17 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 //components
 import Navbar from './navigation/Navbar';
 import Result from './result/Result';
-//contexts
-import { IntervalCtx } from '../../contexts/interval/IntervalContext';
-import { SurveyCtx } from '../../contexts/survey/SurveyContext';
 
 const Counter = props => {
-
-
-    // const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
     const { handleCounterAction } = props;
-    const data = JSON.parse(localStorage.getItem('INTERVAL_SURVEY'));
+    const data = [...props.intervalSurvey];
     const counterKeyShortcut = e => {
         switch (e.code) {
             case 'KeyQ':
@@ -115,25 +109,16 @@ const Counter = props => {
                 break;
         }
     }
-    //Event listener active
     useEffect(() => {
         window.addEventListener('keydown', counterKeyShortcut)
         return () => {
             window.removeEventListener('keydown', counterKeyShortcut);
         }
     });
-    //Reset to default value and start counting from begining
-
-    // useEffect(() => {
-    //     const activeInterval = localStorage.getItem('ACTIVE_INTERVAL');
-
-    //     interval && handleCounterAction('END_INTERVAL');
-    //     activeInterval);
-    // }, [interval]);
 
     return (
         <>
-            <Navbar handleCounterAction={handleCounterAction} />
+            <Navbar {...props} />
             <Result data={data === null ? [] : data} />
         </>
     )

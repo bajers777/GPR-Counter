@@ -4,10 +4,9 @@ import IntervalRow from './IntervalRow';
 
 const Body = props => {
 
-    // const modalData = props.data.map(item => item.survey);
     return (
         <tbody className='result-table__body'>
-            {props.isActiveModal ? <HourCell {...props} /> : <IntervalRow {...props} />}
+            {props.isActiveModal ? <HourCell key={props.pathValue} {...props} /> : <IntervalRow {...props} />}
 
         </tbody>
     )

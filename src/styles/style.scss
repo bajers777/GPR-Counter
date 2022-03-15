@@ -5,27 +5,49 @@
 @use 'extends';
 @use 'buttons';
 @use 'modals';
+@use 'mixins'as *;
 
 #root {
     @extend %flex-row;
+    width: 100%;
     height: 100vh;
     background-color: $bg-grayish;
 }
 
 .counter-app {
+    z-index: 0;
     @extend %flex-column;
-    width: 100%;
+    // width: 100%;
     padding: 2rem;
     position: relative;
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        margin: 0;
+        width: 100%;
+        background-color: $bg-white;
+        z-index: 0;
+
+        button {
+            margin: .5rem;
+        }
+    }
 }
 
 //SIDEBAR
 .sidebar {
     @extend %flex-column;
-    min-width: 250px;
     padding: 2rem;
     background-color: $main-color;
     color: $text-main;
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+    }
 
     h2 {
         border-bottom: $border-thead;
@@ -39,8 +61,6 @@
 
     &__pill {
         @extend %flex-row;
-        padding: .5rem;
-        cursor: pointer;
         background-color: transparent;
         border-style: none;
         color: $bg-white;
@@ -49,32 +69,122 @@
             width: 20px;
             padding-right: .5rem;
         }
+    }
 
-        &:hover {
-            background-color: $secondary-color;
-            border-radius: .25rem;
+    .active {
+        &:before {
+            content: '';
+            transform: translateX(-650%);
+            width: 5px;
+            height: 100%;
+            background-color: $button-secondary-color;
+            border-radius: 5px;
+            animation: .1s ease-in activePill;
+        }
+    }
+}
+
+@keyframes activePill {
+    from {
+        height: 0%;
+    }
+
+    to {
+        height: 100%;
+    }
+}
+
+//USERTAB
+.user {
+    min-width: 25%;
+    height: 100%;
+    border-left: $border-thead;
+
+    &__header {
+        @extend %flex-row;
+        width: 100%;
+        align-items: center;
+
+    }
+
+    &__header {
+        @extend %flex-row;
+        align-items: center;
+        padding: 1rem;
+        background-color: $bg-white;
+
+        &--avatar {
+            width: 30%;
+
+            b {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: $main-color;
+                color: $bg-white;
+                width: 50px;
+                height: 50px;
+                border-radius: 3rem;
+            }
+
         }
 
+
+        &--user-info {
+            @extend %flex-column;
+            align-items: flex-end;
+        }
+    }
+
+    &__body {
+        @extend %flex-column;
+        align-items: center;
+        justify-content: center;
+
+        &--data {
+            @extend %flex-column;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 15px;
+
+            p {
+                font-size: 1em;
+            }
+
+            b {
+                padding: 0;
+                margin: 0;
+                font-size: 2em;
+            }
+        }
+
+
+        .data-neutral {
+            background-color: $secondary-color;
+            color: $bg-white;
+        }
+
+        .data-inprogress {
+            background-color: $data-inprogress-bg;
+            color: $bg-white;
+        }
+
+        .data-done {
+            background-color: $data-done-bg;
+            color: $bg-white;
+        }
     }
 }
 
-.navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    width: 100%;
-    background-color: $bg-white;
-    z-index: 0;
 
-    button {
-        margin: .5rem;
-    }
-}
-
-//COUNTER APP TAB
+//COUNTER APP TAB WHEN ACTIVE
 .result {
-    margin-top: 5rem;
+    margin: 5rem 0;
+    width: 100%;
 
     .result-navbar {
         @extend %flex-row;
@@ -99,14 +209,7 @@
                 width: 100%;
 
                 select {
-                    padding: .75rem 0;
-                    padding-right: 3rem;
-                    padding-left: .5rem;
-                    background-color: transparent;
-                    border-radius: .25rem;
-                    border: 3px solid $select-color;
-                    text-align: left;
-                    color: $select-color;
+                    @extend %select;
                 }
             }
         }
@@ -114,8 +217,31 @@
 }
 
 .counter-app {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
     &__survey-spot {
-        @extend %flex-column;
+        width: 80%;
+        margin: 5rem 0;
+
+        form {
+            @extend %flex-column;
+
+            select {
+                padding: 1rem 0;
+                margin: 1rem 0;
+                font-size: 1rem;
+                @extend %select;
+
+            }
+
+            h2 {
+                text-align: center;
+            }
+        }
+
     }
 }
 
@@ -128,6 +254,150 @@
 
         b {
             padding: 1rem;
+        }
+    }
+}
+
+//DISPLAY
+.display {
+    @extend %flex-row;
+    align-items: center;
+    width: 100%;
+    max-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include customScrollBar;
+}
+
+//SURVEY TAB
+.survey {
+    padding: 2rem;
+    width: 80%;
+    box-sizing: border-box;
+
+    .wrapper {
+        @extend %flex-column;
+        margin-top: 3rem;
+        border-radius: 1rem;
+
+        h4 {
+            padding: 0 1rem;
+        }
+    }
+
+    &__head {
+        @extend %flex-row;
+        padding: 1rem;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom: $border-thead;
+        background-color: $main-color;
+
+        &--cell {
+            color: $bg-white;
+            font-style: italic;
+            font-size: .9rem;
+            font-weight: bolder;
+            width: 20%;
+
+            &:first-child {
+                width: 40%;
+            }
+
+        }
+
+    }
+
+    &__row {
+        @extend %flex-row;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: $border-tbody;
+        border-left: $result-tbody;
+        border-right: $result-tbody;
+
+        p {
+            width: 20%;
+
+            &:first-child {
+                width: 40%;
+            }
+
+        }
+
+        &:last-child {
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        &--buttons {
+            @extend %flex-row;
+
+            button {
+                padding: .25rem;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                transition: ease-in .02;
+
+                &:hover {
+                    height: 1%;
+                }
+            }
+
+        }
+
+
+
+        &:hover {
+            background-color: $text-secondary;
+        }
+    }
+
+}
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: url(../assets/img/login-bg.webp) center no-repeat fixed;
+
+    &__container {
+        @extend %flex-column;
+        align-items: center;
+        justify-content: center;
+        width: max(40vw, 60%);
+        height: max(40vh, 60%);
+        background-color: $bg-login-grayish;
+        border-radius: .5rem;
+
+        b {
+            font-size: 1.5rem;
+            color: $main-color;
+        }
+
+        form {
+            @extend %flex-column;
+            align-items: center;
+
+            input {
+                width: 100%;
+                padding: 1.25rem;
+                margin: 1.5rem;
+                background-color: $bg-grayish;
+                border-style: none;
+                font-size: 1.25rem;
+            }
+
+            button {
+                font-size: 1.25rem;
+                width: 50%;
+            }
+        }
+    }
+
+    .error-handler {
+        p {
+            color: rgba(255, 0, 0, 0.842);
         }
     }
 }

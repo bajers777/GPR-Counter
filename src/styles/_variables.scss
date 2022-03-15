@@ -1,19 +1,26 @@
 /* MAIN VARIABLES
 ========================================================================== */
 
-$main-color: hsl(216, 100%, 48%);
-$secondary-color: hsl(216, 80%, 48%);
-$bg-grayish: hsl(228, 50%, 96%);
-$bg-white: hsl(0, 0%, 100%);
+$main-color: hsl(235, 21%, 21%);
+$secondary-color: hsl(218, 17%, 62%);
+$bg-grayish: hsl(197, 24%, 94%);
+$bg-login-grayish: rgba(236, 241, 243, 0.534);
+
+$bg-white: hsl(60, 5%, 92%);
 $bg-modal-overlay: hsla(0, 0%, 46%, 50%);
-$select-color: hsl(228, 51%, 88%);
 $text-table: hsl(0, 0%, 46%);
 $text-main: hsl(228, 50%, 96%);
 $text-secondary: hsla(228, 50%, 96%, 0.5);
 $border-color: hsl(0, 0%, 46%);
+$button-primary-bgcolor: #E3E3E1;
 $button-secondary-color: hsla(216, 80%, 48%, .8);
+
+/* BORDERS
+========================================================================== */
 $border-thead: 2px solid hsla(0, 0%, 46%, 20%);
+$border-thour: 5px solid hsla(0, 0%, 46%, 20%);
 $border-tbody: 1px solid hsla(0, 0%, 46%, 20%);
+$result-tbody: 3px solid hsla(0, 0%, 46%, 20%);
 
 /* FONTS
 ========================================================================== */
@@ -23,3 +30,14 @@ $sidebar-text-font: 300;
 $button-primary-font: 100;
 $button-secondary-font: 300;
 $table-text-font: 600;
+
+
+/* SCROLLBAR
+========================================================================== */
+$scrollbarBG: hsl(198, 16%, 84%);
+$thumbBG: hsl(200, 16%, 62%);
+
+
+//USERBAR
+$data-done-bg: #007a00;
+$data-inprogress-bg: #B4772D;

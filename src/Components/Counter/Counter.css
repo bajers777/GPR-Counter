@@ -1,8 +1,0 @@
-.counter {
-    display: flex;
-    flex-flow: row nowrap;
-}
-
-.counter__shortcuts img {
-    width: 50%;
-}

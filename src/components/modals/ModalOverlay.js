@@ -1,29 +1,28 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom'
 import Keyshortcuts from './Keyshortcuts';
-import SurveyResult from './SurveyResult/SurveyResult';
+import SurveyResult from './SurveyResult';
 import { ModalCtx } from '../../contexts/modal/ModalContext';
 
 const ModalOverlay = props => {
     const [isActiveModal, setActiveModal, modalData, setModalData] = useContext(ModalCtx);
-    const modalOverlay = <div onClick={() => setActiveModal(false)} className="modal-overlay"></div>;
 
     const showModal = () => {
         switch (modalData.type) {
             case 'keyshortcuts':
                 return <Keyshortcuts />
             case 'survey-result':
-                return <SurveyResult modalData={modalData.activeSurvey} />
+                return <SurveyResult modalData={props.activeUserMoviesList.filter(item => item.name === modalData.activeItem).pop()} />
             default:
                 break;
         }
     }
     return ReactDOM.createPortal(
-        <>
+        <div className={isActiveModal ? 'modal' : 'hidden'}>
+            {isActiveModal && <><div onClick={() => setActiveModal(false)} className='modal__overlay'></div>{showModal()}</>}
+        </div>
 
-            {isActiveModal && showModal()}
-            {isActiveModal && modalOverlay}
-        </>, document.getElementById('modal'))
+        , document.getElementById('modal-root'))
 
 }
 

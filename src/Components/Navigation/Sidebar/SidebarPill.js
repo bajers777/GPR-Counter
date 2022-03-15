@@ -1,9 +1,15 @@
 import React from 'react';
 const SidebarPill = props => {
     return (
-        <>
-            <button onClick={props.handleNavPillButton} data-type={props.dataType} className="sidebar__pill" ><img src={props.imgSrc} alt="" /><b>{props.pillName}</b></button >
-        </>
+        <li className='sidebar__pill '>
+            <button
+                onClick={props.handleNavPillButton}
+                data-type={props.dataType}
+                className={`sidebar-btn ${props.active === props.dataType ? 'active' : ''}`}
+            >
+                {props.icon}
+            </button>
+        </li>
     );
 };
 

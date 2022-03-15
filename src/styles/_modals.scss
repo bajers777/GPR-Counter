@@ -1,33 +1,76 @@
 @use 'variables'as *;
 
-#modal {
-    position: relative;
-}
-
-.modal-overlay {
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-    background-color: $bg-modal-overlay;
-    z-index: 1;
-}
-
 .modal {
-    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    left: 15%;
-    top: 15;
-    transform: translate(-10%, 15%);
+    height: 100vh;
+    width: 100vw;
 
-    &__keyshortcuts {
-        z-index: 9999;
+    .hidden {
+        display: none;
+    }
+
+    .modal__keyshortcuts {
+        z-index: 1;
+        width: 80%;
 
         img {
+            display: block;
             width: 100%;
         }
     }
-}
 
-.hidden {
-    display: none;
+    .modal__survey-result {
+        z-index: 1;
+        position: absolute;
+        max-height: 600px;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        background-color: $bg-white;
+        overflow-y: scroll;
+        scrollbar-track-color: black;
+
+        .result {
+            margin-top: 1rem;
+        }
+
+        &--title {
+            display: block;
+            padding-top: 2.5rem;
+            padding-bottom: 0;
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+        }
+
+        scrollbar-width: thin;
+        scrollbar-color: $thumbBG $scrollbarBG;
+
+        &::-webkit-scrollbar {
+            width: 11px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $scrollbarBG;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $thumbBG;
+            border-radius: 6px;
+            border: 3px solid $scrollbarBG;
+        }
+
+
+    }
+
+    .modal__overlay {
+        z-index: 1;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: $bg-modal-overlay;
+    }
+
 }

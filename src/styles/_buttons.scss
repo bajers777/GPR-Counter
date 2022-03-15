@@ -2,7 +2,7 @@
 
 .primary-btn {
     padding: .75rem 1.5rem;
-    background-color: $secondary-color;
+    background-color: $main-color;
     border: none;
     border-radius: .25rem;
     color: $text-main;
@@ -16,15 +16,6 @@
 
 }
 
-.inactive {
-    background-color: $select-color;
-    padding: .75rem 1.5rem;
-    border: none;
-    border-radius: .25rem;
-    color: $text-main;
-    letter-spacing: 1.5px;
-    font-weight: $button-primary-font;
-}
 
 .secondary-btn {
     display: flex;
@@ -46,4 +37,27 @@
         color: $main-color;
         letter-spacing: 1.1px;
     }
+}
+
+.inactive {
+    background-color: $secondary-color;
+    padding: .75rem 1.5rem;
+    border: none;
+    border-radius: .25rem;
+    color: $text-main;
+    letter-spacing: 1.5px;
+    font-weight: $button-primary-font;
+}
+
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: .50rem .25rem;
+    background-color: $button-primary-bgcolor;
+    border-style: none;
+    border-radius: 5px;
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
 }

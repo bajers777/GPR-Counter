@@ -6,25 +6,20 @@ export const ModalCtx = React.createContext();
 
 const ModalContext = props => {
     const [isActiveModal, setActiveModal] = useState(false);
-    const [modalData, setModalData] = useState([]);
+    const [modalData, setModalData] = useState({ type: null });
 
     const handleModalVisibility = e => {
-        const completedList = JSON.parse(localStorage.getItem('ACTIVE_USER_COMPLETED_LIST'));
-        const type = e.target.getAttribute('data-type');
+        const type = e.currentTarget.getAttribute('data-type');
         if (type === 'survey-result') {
-            const currentTarget = e.target.parentElement.querySelector('.survey__cell--name').innerText;
-            const activeSurvey = completedList.filter(item => item.name === currentTarget).pop();
+            const currentTarget = e.currentTarget.parentElement.parentElement.querySelector('.survey__row--name').innerText;
+
             setModalData({
                 type,
-                activeSurvey
-            });
+                activeItem: currentTarget
+            })
         } else {
-            setModalData({
-                type
-            });
+            setModalData({ type });
         }
-        //active item:
-        //{status: true, id: '1', survey: Array(0), name: 'Grodzisk #Marszałkowska', date: '01-01-2020'}
         setActiveModal(true);
     }
 

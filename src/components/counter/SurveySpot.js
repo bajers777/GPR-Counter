@@ -1,33 +1,41 @@
 import React, { useContext, useState } from 'react';
+import { SidebarCtx } from '../../contexts/sidebar/SidebarContext';
 //components
 //contexts
-import { SurveyCtx } from '../../contexts/survey/SurveyContext';
-import { getData } from '../../firebase';
-
+export let activeItemSurveyResult;
 const SurveySpot = props => {
-  const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
-  const userMovies = JSON.parse(localStorage.getItem('ACTIVE_USER_MOVIES_LIST'));
-
+  const { setSurveySpotStatus, setActiveSurvey, inProgressUserMovies, setSurveyResult } = props;
+  const [surveySpot, setSurveySpot] = useState();
+  const { setSidebarActiveStatus } = useContext(SidebarCtx);
   const handleSubmitForm = e => {
     e.preventDefault();
-    return !surveySpot ? alert('Wybierz punkt do policzenia!') : (setSurveySpotStatus(true), localStorage.setItem('ACTIVE_ITEM', JSON.stringify(surveySpot.pop())));
 
+    if (!surveySpot) {
+      return alert('Wybierz punkt do policzenia!');
+    }
+    localStorage.setItem('isCounterActive', true);
+    setSurveySpotStatus(true);
+    setSidebarActiveStatus(false);
+    setSurveyResult(surveySpot.surveyResult);
+    setActiveSurvey(surveySpot);
+
+    //get data from firebase and set surveyResult state to fetched data, when user click endHour function, check prevState and set actual hourId then add next counted hour
   }
   const handleSelectChange = e => {
-    const selectedSurveySpot = userMovies.filter(item => item.id === e.target.value);
-
-    return setSurveySpot(selectedSurveySpot);
+    const selectedSurveySpot = inProgressUserMovies.filter(item => item.id === e.target.value);
+    return setSurveySpot(selectedSurveySpot.pop());
   }
+
   return (
     <>
 
       <div className="counter-app__survey-spot">
-        {userMovies &&
+        {inProgressUserMovies &&
           <form onSubmit={handleSubmitForm}>
-            <label>Punkt do rozliczenia: </label>
+            <label><h2>Punkt do rozliczenia</h2></label>
             <select defaultValue={null} onChange={handleSelectChange}>
               <option value={null}>Wybierz punkt</option>
-              {userMovies.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
+              {inProgressUserMovies.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
             </select>
             <button type='submit' className='primary-btn'>Wybierz</button>
           </form>}

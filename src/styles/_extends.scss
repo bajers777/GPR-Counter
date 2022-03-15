@@ -1,5 +1,6 @@
 /* Flex extends
 ========================================================================== */
+@use 'variables'as *;
 
 %flex-row {
     display: flex;
@@ -10,4 +11,15 @@
     display: flex;
     flex-flow: column nowrap;
     justify-content: baseline;
+}
+
+%select {
+    padding: .75rem 0;
+    padding-right: 3rem;
+    padding-left: .5rem;
+    background-color: transparent;
+    border-radius: .25rem;
+    border: 3px solid $main-color;
+    text-align: left;
+    color: $main-color;
 }

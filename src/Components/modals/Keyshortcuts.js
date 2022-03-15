@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import { ShortcutsImage } from '../../assets/img/images';
 
 const Keyshortcuts = () => {
   return (
     <>
-      <div className='modal modal__keyshortcuts'>
+      <div className='modal__keyshortcuts'>
         <img src={ShortcutsImage} alt="Skróty klawiszowe" />
       </div>
     </>

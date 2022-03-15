@@ -1,25 +1,33 @@
 import React, { useContext } from 'react';
-import { getData, postData } from '../../firebase';
-import { ModalCtx } from '../../contexts/modal/ModalContext';
-import ModalOverlay from '../modals/ModalOverlay';
-
+//icons
+import { SurveyDone, SurveyEnd, SurveyDownload } from '../../assets/icons/icons';
 const SurveyCell = props => {
 
-    const { name, date, status } = props;
-    const [isActiveModal, setActiveModal, modalData, setModalData, handleModalVisibility] = useContext(ModalCtx);
+    const { name, date, status, link, handleChangeStatusButton, handleModalVisibility } = props;
 
-    const handleChangeStatusButton = e => {
-        //postData(type, activeSurvey, updateType, updateData)
-        const activeUserMoviesList = JSON.parse(localStorage.getItem('ACTIVE_USER_MOVIES_LIST'));
-        const activeSurvey = activeUserMoviesList.filter(item => item.name === e.target.parentElement.querySelector('.survey__cell--name').innerText).pop();
-        // return postData('UPDATE_STATUS', activeSurvey, true);
-    }
     return (
-        <div className="survey__cell">
-            <b>Nazwa punktu:</b> <p className='survey__cell--name'>{name}</p>
-            <b>Data:</b> <p>{date}</p>
-            <b>Status:</b>{status ? <><p>Pomiar zakończony</p> <button data-type='survey-result' onClick={handleModalVisibility}>Pokaż pomiar</button></> : <><p>W trakcie pomiaru</p> <button onClick={handleChangeStatusButton}>Zakończ pomiar</button></>}
-        </div>
+        <>
+            <p className='survey__row--name'>{name}</p>
+            <p className='survey__row--date'>{date}</p>
+            <p className='survey__row--status'>{status ? <span style={{ color: 'hsl(120, 100%, 36%)' }}>Pomiar zakończony</span> : <span style={{ color: 'hsl(0, 100%, 36%)' }}>W trakcie pomiaru</span>}</p>
+            <div className="survey__row--buttons">
+
+                {status ?
+                    <button data-type='survey-result' onClick={handleModalVisibility}>
+                        <SurveyDone fill='hsl(235, 21%, 21%))' />
+                    </button>
+                    :
+                    <button onClick={handleChangeStatusButton}>
+                        <SurveyEnd fill='hsl(235, 21%, 21%)' />
+                    </button>
+
+                }
+                <button onClick={() => window.open(link)}>
+                    <SurveyDownload fill='hsl(235, 21%, 21%)' />
+                </button>
+
+            </div>
+        </>
     )
 }
 

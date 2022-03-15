@@ -12,7 +12,5 @@ const ResultTable = props => {
         </table>
     )
 }
-// <IntervalResult key={index + item} data={item.survey} pathValue={props.pathValue} filterOption={props.filterOption} />
-// surveyDirection.map((item, index) => <ResultCell key={type[index]} ammount={item.ammount} />)
 
 export default ResultTable

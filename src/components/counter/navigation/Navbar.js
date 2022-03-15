@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { IntervalCtx } from '../../../contexts/interval/IntervalContext';
-import { SurveyCtx } from '../../../contexts/survey/SurveyContext';
+import { SidebarCtx } from '../../../contexts/sidebar/SidebarContext';
 import { postData } from '../../../firebase';
-
 const Navbar = props => {
+    const { intervalSurvey, setIntervalSurvey, surveyResult, setSurveyResult, setSurveySpotStatus, currentUser } = props;
     const [intervalCounter, setIntervalCounter] = useState(0);
     const [hourCounter, setHourCounter] = useState(1);
-    const [interval, setInterval, isActiveInterval, setActiveInterval] = useContext(IntervalCtx);
-    const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
-
+    const [isActiveInterval, setActiveInterval] = useState(true);
+    const { setSidebarActiveStatus } = useContext(SidebarCtx);
     const handleEndInterval = () => {
         const intervalBase = [':00 - :15', ':15 - :30', ':30 - :45', ':45 - 00'];
         localStorage.setItem('ACTIVE_INTERVAL', intervalBase[intervalCounter])
@@ -17,14 +15,13 @@ const Navbar = props => {
     }
 
     const handleEndHour = () => {
-        const interval = JSON.parse(localStorage.getItem('INTERVAL_SURVEY'));
+        let hourId;
         setSurveyResult(prevState => {
-            const countedHour = [...prevState, { hourId: hourCounter, survey: interval }];
-            // localStorage.setItem('SURVEY_RESULT', JSON.stringify(countedHour));
-            localStorage.setItem('ACTIVE_SURVEY', JSON.stringify(countedHour));
+            prevState.length ? hourId = [...prevState].map(item => item.hourId).pop() + 1 : hourId = 1;
+            const countedHour = [...prevState, { hourId, survey: intervalSurvey }];
+            setHourCounter(hourCounter + 1);
             return countedHour;
         });
-        setHourCounter(hourCounter + 1);
         setIntervalSurvey([]);
         setActiveInterval(true);
         localStorage.removeItem('INTERVAL_SURVEY');
@@ -38,10 +35,13 @@ const Navbar = props => {
         }
         else {
             // postData(type, activeSurvey, updateType, updateData)
-            postData('UPDATE_VALUE', JSON.parse(localStorage.getItem('ACTIVE_ITEM')));
+            postData('UPDATE_VALUE', props.activeSurvey, surveyResult, props.currentUser.userShortName);
+            props.setActiveSurvey([]);
+            setSurveyResult([]);
             setSurveySpotStatus(false);
-            localStorage.removeItem("ACTIVE_SURVEY");
-            return localStorage.removeItem('ACTIVE_ITEM');
+            props.setUpdatedStatus(prevState => !prevState);
+            setSidebarActiveStatus(true);
+            return localStorage.setItem('isCounterActive', false);
         }
     }
 

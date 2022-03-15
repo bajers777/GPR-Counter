@@ -1,32 +1,40 @@
-import React, { useContext } from 'react';
-import { SurveyCtx } from '../../../contexts/survey/SurveyContext';
+import React, { useState, useContext, useEffect } from 'react';
 //Components
 import SidebarPill from './SidebarPill';
 //Assets
-import { CounterIcon, SurveyIcon, FilmIcon, RegistrationIcon } from '../../../assets/icons/icons';
+import { SidebarCounter, SidebarSurveys } from '../../../assets/icons/icons';
 //Contexts
-import { ActivePillCtx } from '../../../contexts/sidebar/ActivePillContext';
+import { SidebarCtx } from '../../../contexts/sidebar/SidebarContext';
 
 const Sidebar = props => {
-  const sidebarPills = ['Aplikacja', 'Pomiary', 'Filmy'];
-  const activePillType = ['app', 'survey', 'movies'];
-  const icons = [CounterIcon, SurveyIcon, FilmIcon, RegistrationIcon];
-  const [activePill, setActivePill] = useContext(ActivePillCtx);
-  const [intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus] = useContext(SurveyCtx);
+  const { isSidebarActive, setActivePill } = useContext(SidebarCtx);
+  const sidebarControl = JSON.parse(localStorage.getItem('isCounterActive'));
+  const [active, setActive] = useState('app');
 
   const handleNavPillButton = item => {
     const key = item.currentTarget.getAttribute('data-type');
+    setActive(key);
+    item.target.classList.add('active');
     return setActivePill(key);
   }
   return (
     <>
-      {!isSurveySpotSet && <div className="sidebar">
-        <h2>GPR - Counter</h2>
-        {
-          sidebarPills.map((item, index) => <SidebarPill handleNavPillButton={handleNavPillButton} dataType={activePillType[index]} key={activePillType[index]} pillName={item} imgSrc={icons[index]} />)
-        }
-      </div>}
+      {isSidebarActive && <nav className="sidebar">
+        <ul>
+          <SidebarPill
+            handleNavPillButton={handleNavPillButton}
+            dataType={'app'}
+            active={active}
+            icon={<SidebarCounter />} />
 
+          <SidebarPill
+            handleNavPillButton={handleNavPillButton}
+            dataType={'survey'}
+            active={active}
+            icon={<SidebarSurveys />} />
+
+        </ul>
+      </nav>}
     </>
   );
 };

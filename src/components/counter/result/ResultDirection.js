@@ -2,7 +2,7 @@ import React from 'react';
 
 const ResultDirection = props => {
     const handleDirectionChange = e => {
-        props.setPathValue(e.target.value);
+        props.setPathValue(parseInt(e.target.value));
     }
 
     return (

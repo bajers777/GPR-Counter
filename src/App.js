@@ -1,39 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import PrivateRoutes from './components/routes/PrivateRoutes';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+//routes
+import PublicRoutes from './components/routes/PublicRoutes';
+//components
 import Sidebar from './components/navigation/sidebar/Sidebar';
-import Display from './Display';
+import Display from './components/counter/Display';
+import Login from './pages/Login';
 //Contexts
 import ModalContext from './contexts/modal/ModalContext';
-import ActivePillContext from './contexts/sidebar/ActivePillContext';
-import SurveyContext from './contexts/survey/SurveyContext';
-import IntervalContext from './contexts/interval/IntervalContext';
-
+import SidebarContext from './contexts/sidebar/SidebarContext';
 import AuthContext from './contexts/auth/AuthContext';
-//firebase connection
-import { getData, postData } from './firebase';
 //CSS
 import './styles/style.scss';
 
 const App = () => {
-  useEffect(() => {
-    getData('inprogress');
-  }, []);
-
   return (
-    <>
-      {/* <AuthContext> */}
-      <ModalContext>
-        {/* <Keyshortcuts /> */}
-        <ActivePillContext>
-          <IntervalContext >
-            <SurveyContext>
-              <Sidebar />
-              <Display />
-            </SurveyContext>
-          </IntervalContext>
-        </ActivePillContext>
-      </ModalContext>
-      {/* </AuthContext> */}
-    </>
+    <Router>
+      <AuthContext>
+        <Routes>
+          <Route
+            path='/'
+            exact
+            element={<Login />}
+          />
+          <Route
+            path='/counter-app'
+            element={<PrivateRoutes />}
+          />
+        </Routes>
+      </AuthContext>
+    </Router>
+
   )
 }
-export default App
+export default App;

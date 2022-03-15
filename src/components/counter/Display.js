@@ -1,10 +1,16 @@
-import React, { createContext, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
+
+//Components
+import Counter from './Counter';
+import SurveySpot from './SurveySpot';
 
 
-export const SurveyCtx = React.createContext();
+const Display = props => {
+    const [intervalSurvey, setIntervalSurvey] = useState([]);
+    const [surveyResult, setSurveyResult] = useState([]);
+    const [isSurveySpotSet, setSurveySpotStatus] = useState([]);
+    const [activeSurvey, setActiveSurvey] = useState({});
 
-
-const SurveyContext = props => {
     const carSurveyDefault = [
         {
             path: 1, survey: [
@@ -188,20 +194,42 @@ const SurveyContext = props => {
         }
     ];
 
-    const [intervalSurvey, setIntervalSurvey] = useState([]);
-    const [surveyCounter, setSurveyCounter] = useState(carSurveyDefault);
-    const [surveyResult, setSurveyResult] = useState([]);
-    const [surveySpot, setSurveySpot] = useState();
-    const [isSurveySpotSet, setSurveySpotStatus] = useState(false);
+    const isCounterActive = JSON.parse(localStorage.getItem('isCounterActive'));
+    const handleCounterAction = (type, direction, path) => {
+        const data = carSurveyDefault;
+        const activeInterval = localStorage.getItem('ACTIVE_INTERVAL');
+        if (type === 'END_INTERVAL') {
+            setIntervalSurvey(prevState => [...prevState, { activeInterval, survey: [...data] }]);
+        }
+        else {
+            return data.filter(itemPath => itemPath.path === path).map(itemSurvey => itemSurvey.survey.filter(itemType => itemType.type === type)).pop().map(itemDirections => itemDirections.directions.filter(itemDirection => itemDirection.direction === direction)).pop().map(itemAmmount => itemAmmount.ammount++);
+        }
+    }
+
     return (
-        <>
-            <SurveyCtx.Provider
-                value={[intervalSurvey, setIntervalSurvey, surveyCounter, setSurveyCounter, carSurveyDefault, surveyResult, setSurveyResult, surveySpot, setSurveySpot, isSurveySpotSet, setSurveySpotStatus]}
-            >
-                {props.children}
-            </SurveyCtx.Provider>
-        </>
+        <section className='counter-app'>
+            {isCounterActive ?
+                <Counter
+                    intervalSurvey={intervalSurvey}
+                    setIntervalSurvey={setIntervalSurvey}
+                    handleCounterAction={handleCounterAction}
+                    setUpdatedStatus={props.setUpdatedStatus}
+                    activeSurvey={activeSurvey}
+                    setActiveSurvey={setActiveSurvey}
+                    surveyResult={surveyResult}
+                    setSurveyResult={setSurveyResult}
+                    setSurveySpotStatus={setSurveySpotStatus}
+                    currentUser={props.currentUser}
+                />
+                :
+                <SurveySpot
+                    setSurveySpotStatus={setSurveySpotStatus}
+                    setActiveSurvey={setActiveSurvey}
+                    inProgressUserMovies={props.inProgressUserMovies}
+                    setSurveyResult={setSurveyResult}
+                />}
+        </section>
     );
 };
 
-export default SurveyContext;
+export default Display;

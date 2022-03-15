@@ -32,35 +32,39 @@
 
     &__body {
 
-        tr {
-            @extend %flex-row;
-            justify-content: space-between;
-
-            &--interval {
-                text-align: left;
-            }
-
-            &--cell {
-                padding: .5rem 0;
-                width: 100%;
-                text-align: center;
-                border-bottom: $border-tbody;
-            }
+        td {
+            width: 100%;
         }
 
     }
 
     &__hour {
-        tr {
-            @extend %flex-row;
-            width: 100%;
-        }
+        border-bottom: $border-thead;
 
         td {
+            padding: 1rem 0;
             width: 100%;
             text-align: center;
         }
     }
 
+    &__interval {
+        @extend %flex-row;
+        justify-content: space-between;
+
+        &--interval {
+            text-align: left;
+            border-bottom: $border-tbody;
+            padding: .5rem 0;
+
+        }
+
+        &--value {
+            padding: .5rem 0;
+            width: 100%;
+            text-align: center;
+            border-bottom: $border-tbody;
+        }
+    }
 
 }
