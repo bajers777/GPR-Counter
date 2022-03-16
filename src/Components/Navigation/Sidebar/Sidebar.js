@@ -5,6 +5,7 @@ import SidebarPill from './SidebarPill';
 import { SidebarCounter, SidebarSurveys } from '../../../assets/icons/icons';
 //Contexts
 import { SidebarCtx } from '../../../contexts/sidebar/SidebarContext';
+import './Sidebar.scss';
 
 const Sidebar = props => {
   const { isSidebarActive, setActivePill } = useContext(SidebarCtx);

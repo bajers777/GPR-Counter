@@ -6,7 +6,7 @@ import DataModule from './DataModule';
 //contexts
 import { SidebarCtx } from '../../contexts/sidebar/SidebarContext';
 import { AuthCtx } from '../../contexts/auth/AuthContext';
-
+import './User.scss';
 const User = props => {
     const { userMoviesList, currentUser } = props;
     const { isSidebarActive } = useContext(SidebarCtx);

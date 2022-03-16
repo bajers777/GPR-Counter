@@ -1,4 +1,4 @@
-@use 'variables'as *;
+@use '../../styles/style.scss'as *;
 
 .modal {
     display: flex;
@@ -31,6 +31,7 @@
         background-color: $bg-white;
         overflow-y: scroll;
         scrollbar-track-color: black;
+        @include loadingAnimation(login);
 
         .result {
             margin-top: 1rem;

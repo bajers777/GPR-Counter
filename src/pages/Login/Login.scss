@@ -1,0 +1,50 @@
+@use '../../styles/style.scss'as *;
+
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: url(../../assets/img/login-bg.webp) center no-repeat fixed;
+
+    &__container {
+        @extend %flex-column;
+        align-items: center;
+        justify-content: center;
+        width: max(40vw, 60%);
+        height: max(40vh, 60%);
+        background-color: $bg-login-grayish;
+        border-radius: .5rem;
+        @include loadingAnimation(login);
+
+        b {
+            font-size: 1.5rem;
+            color: $main-color;
+        }
+
+        form {
+            @extend %flex-column;
+            align-items: center;
+
+            input {
+                width: 100%;
+                padding: 1.25rem;
+                margin: 1.5rem;
+                background-color: $bg-grayish;
+                border-style: none;
+                font-size: 1.25rem;
+            }
+
+            button {
+                font-size: 1.25rem;
+                width: 50%;
+            }
+        }
+    }
+
+    .error-handler {
+        p {
+            color: rgba(255, 0, 0, 0.842);
+        }
+    }
+}

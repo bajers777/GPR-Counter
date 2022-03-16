@@ -1,0 +1,48 @@
+@use '../../../styles/style.scss'as *;
+
+.sidebar {
+    @extend %flex-column;
+    padding: 2rem;
+    background-color: $main-color;
+    color: $text-main;
+
+    ul {
+        list-style: none;
+        padding: 0;
+
+    }
+
+    h2 {
+        border-bottom: $border-thead;
+        font-weight: $sidebar-header-font;
+        padding-bottom: 1rem;
+    }
+
+    b {
+        font-weight: $sidebar-text-font;
+    }
+
+    &__pill {
+        @extend %flex-row;
+        background-color: transparent;
+        border-style: none;
+        color: $bg-white;
+
+        img {
+            width: 20px;
+            padding-right: .5rem;
+        }
+    }
+
+    .active {
+        &:before {
+            content: '';
+            transform: translateX(-650%);
+            width: 5px;
+            height: 100%;
+            background-color: $button-secondary-color;
+            border-radius: 5px;
+            animation: .1s ease-in activePill;
+        }
+    }
+}

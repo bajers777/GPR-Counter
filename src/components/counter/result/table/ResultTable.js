@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import '../../../../styles/_result-table.scss';
 
 import Header from './Header';
 import Body from './Body';

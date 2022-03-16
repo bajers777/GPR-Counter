@@ -117,10 +117,10 @@ const Counter = props => {
     });
 
     return (
-        <>
+        <div className="counter">
             <Navbar {...props} />
             <Result data={data === null ? [] : data} />
-        </>
+        </div>
     )
 }
 

@@ -1,0 +1,82 @@
+@use '../../styles/style.scss'as *;
+
+.survey {
+    padding: 2rem;
+    width: 80%;
+    box-sizing: border-box;
+
+    .wrapper {
+        @extend %flex-column;
+        margin-top: 3rem;
+        border-radius: 1rem;
+
+        h4 {
+            padding: 0 1rem;
+        }
+    }
+
+    &__head {
+        @extend %flex-row;
+        padding: 1rem;
+        border-radius: 1rem 1rem 0 0;
+        border-bottom: $border-thead;
+        background-color: $main-color;
+
+        &--cell {
+            color: $bg-white;
+            font-style: italic;
+            font-size: .9rem;
+            font-weight: bolder;
+            width: 20%;
+
+            &:first-child {
+                width: 40%;
+            }
+
+        }
+
+    }
+
+    &__row {
+        @extend %flex-row;
+        align-items: center;
+        padding: 1rem;
+        border-bottom: $border-tbody;
+        border-left: $result-tbody;
+        border-right: $result-tbody;
+
+        p {
+            width: 20%;
+
+            &:first-child {
+                width: 40%;
+            }
+
+        }
+
+        &:last-child {
+            border-radius: 0 0 1rem 1rem;
+        }
+
+        &--buttons {
+            @extend %flex-row;
+
+            button {
+                padding: .25rem;
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+                transition: ease-in .02;
+
+                &:hover {
+                    height: 1%;
+                }
+            }
+
+        }
+
+        &:hover {
+            background-color: $text-secondary;
+        }
+    }
+}

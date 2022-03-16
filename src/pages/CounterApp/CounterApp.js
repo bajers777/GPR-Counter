@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 //contexts
-import { SidebarCtx } from './contexts/sidebar/SidebarContext';
+import { SidebarCtx } from '../../contexts/sidebar/SidebarContext';
 //components
-import Display from './components/counter/Display';
-import Survey from './components/surveys/Survey';
-import Request from './components/request/Request';
-import User from './components/user/User';
+import Display from '../../components/counter/Display';
+import Survey from '../../components/surveys/Survey';
+import User from '../../components/user/User';
 //database
-import { getData, userList } from './firebase';
-import Dashboard from './components/dashboard/Dashboard';
+import { getData, userList } from '../../firebase';
 import { getDocs } from 'firebase/firestore/lite';
-import { AuthCtx } from './contexts/auth/AuthContext';
-import { Navigate, useNavigate } from 'react-router';
+import { AuthCtx } from '../../contexts/auth/AuthContext';
+import { useNavigate } from 'react-router';
+
+import './Counter.scss';
 
 const CounterApp = props => {
-    const { activePill, setActivePill } = useContext(SidebarCtx);
+    const { activePill } = useContext(SidebarCtx);
     const { isUserLogged } = useContext(AuthCtx);
     const [intervalSurvey, setIntervalSurvey] = useState([]);
     const [isUpdated, setUpdatedStatus] = useState(false);
@@ -40,10 +40,6 @@ const CounterApp = props => {
                     userMoviesList={userMoviesList}
                     currentUser={currentUser}
                 />
-            case 'dashboard':
-                return <Dashboard />
-            case 'request':
-                return <Request />
             default:
                 break;
         }

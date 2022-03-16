@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 //Components
 import Counter from './Counter';
 import SurveySpot from './SurveySpot';
-
+import './Display.scss';
 
 const Display = props => {
     const [intervalSurvey, setIntervalSurvey] = useState([]);

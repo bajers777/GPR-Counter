@@ -1,0 +1,11 @@
+@use '../../styles/style.scss'as *;
+
+.display {
+    @extend %flex-row;
+    align-items: center;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    @include customScrollBar;
+    @include loadingAnimation(login);
+}

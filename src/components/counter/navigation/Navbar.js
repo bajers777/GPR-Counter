@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { SidebarCtx } from '../../../contexts/sidebar/SidebarContext';
 import { postData } from '../../../firebase';
+import './Navbar.scss';
+
 const Navbar = props => {
     const { intervalSurvey, setIntervalSurvey, surveyResult, setSurveyResult, setSurveySpotStatus, currentUser } = props;
     const [intervalCounter, setIntervalCounter] = useState(0);

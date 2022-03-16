@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import Keyshortcuts from './Keyshortcuts';
 import SurveyResult from './SurveyResult';
 import { ModalCtx } from '../../contexts/modal/ModalContext';
-
+import './Modal.scss';
 const ModalOverlay = props => {
-    const [isActiveModal, setActiveModal, modalData, setModalData] = useContext(ModalCtx);
+    const { isActiveModal, setActiveModal, modalData } = useContext(ModalCtx);
 
     const showModal = () => {
         switch (modalData.type) {

@@ -1,16 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { ModalCtx } from '../../contexts/modal/ModalContext';
 import { postData } from '../../firebase';
 import ModalOverlay from '../modals/ModalOverlay';
 import SurveyRow from './SurveyRow';
-
+import './Survey.scss';
 const Survey = props => {
     const activeUserMoviesList = [...props.userMoviesList];
-    const [isActiveModal, setActiveModal, modalData, setModalData, handleModalVisibility] = useContext(ModalCtx);
+    const { handleModalVisibility } = useContext(ModalCtx);
 
     const handleChangeStatusButton = e => {
-        // postData(type, activeSurvey, updateType, updateData);
-        const user = localStorage.getItem('uid');
         const inProgressMovieList = [...activeUserMoviesList].filter(item => !item.status);
         const activeSurvey = inProgressMovieList.filter(item => item.name === e.currentTarget.parentElement.parentElement.querySelector('.survey__row--name').innerText).pop();
         return postData('UPDATE_STATUS', activeSurvey, true, props.currentUser.userShortName);

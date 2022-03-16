@@ -1,6 +1,38 @@
-@use '_variables'as *;
-@use 'extends';
-@use 'buttons';
+@use '../../../styles/style.scss'as *;
+
+.result {
+    margin: 5rem 0;
+    width: 100%;
+
+    .result-navbar {
+        @extend %flex-row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+        border-radius: 1rem 1rem 0 0;
+        background-color: $bg-white;
+
+        .result-navbar__main-group {
+            @extend %flex-row;
+            align-items: center;
+            justify-content: center;
+
+            button {
+                margin: .5rem;
+            }
+
+
+            .direction-select {
+                position: relative;
+                width: 100%;
+
+                select {
+                    @extend %select;
+                }
+            }
+        }
+    }
+}
 
 .result-table {
     width: 100%;

@@ -1,0 +1,39 @@
+@use '../../styles/style.scss'as *;
+
+
+.counter {
+    width: 100%;
+    box-sizing: border-box;
+    @include loadingAnimation(load);
+}
+
+.counter-app {
+    @extend %flex-column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    position: relative;
+
+
+    &__survey-spot {
+        width: 80%;
+        margin: 5rem 0;
+
+        form {
+            @extend %flex-column;
+
+            select {
+                padding: 1rem 0;
+                margin: 1rem 0;
+                font-size: 1rem;
+                @extend %select;
+            }
+
+            h2 {
+                text-align: center;
+            }
+        }
+
+    }
+}

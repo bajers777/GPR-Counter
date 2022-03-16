@@ -1,11 +1,9 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router';
-import { AuthCtx } from '../../contexts/auth/AuthContext';
+import React from 'react';
 //contexts
 import ModalContext from '../../contexts/modal/ModalContext';
 import SidebarContext from '../../contexts/sidebar/SidebarContext';
 //components
-import CounterApp from '../../CounterApp';
+import CounterApp from '../../pages/CounterApp/CounterApp';
 import Sidebar from '../navigation/sidebar/Sidebar';
 
 const PrivateRoutes = () => {

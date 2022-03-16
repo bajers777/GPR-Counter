@@ -3,11 +3,11 @@ import ResultTable from './table/ResultTable';
 import { ModalCtx } from '../../../contexts/modal/ModalContext';
 import ResultNavbar from './ResultNavbar';
 import ModalOverlay from '../../modals/ModalOverlay';
-
+import './Result.scss';
 const Result = props => {
     const [pathValue, setPathValue] = useState(1);
     const [filterOption, setFilterOption] = useState('UPRIGHT');
-    const [isActiveModal, setActiveModal, modalData, setModalData, handleModalVisibility] = useContext(ModalCtx);
+    const { isActiveModal, modalData, handleModalVisibility } = useContext(ModalCtx);
 
     const setFilter = e => {
         setFilterOption(e.target.getAttribute('data-direction'));

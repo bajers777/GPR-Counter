@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { getData } from "../../firebase";
 
 
 export const ModalCtx = React.createContext();
@@ -22,11 +21,17 @@ const ModalContext = props => {
         }
         setActiveModal(true);
     }
-
+    const value = {
+        isActiveModal,
+        setActiveModal,
+        modalData,
+        setModalData,
+        handleModalVisibility
+    }
     return (
         <>
             <ModalCtx.Provider
-                value={[isActiveModal, setActiveModal, modalData, setModalData, handleModalVisibility]}
+                value={value}
             >
                 {props.children}
             </ModalCtx.Provider>
