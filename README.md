@@ -3,8 +3,8 @@
 
   <p align="center">
     Welcome all recruters to my React.js application created for both personal and commercial purposes.
-      The application is complete nearly in 90%, still there are features that I want to implement in future.
-      If you got here by accident feel free to leave feedback or report issue.
+      The application is complete nearly in 90%, right now Admin Dashboard component is not yet implemented.
+     I'll be greatful for any feedback!
     <br />
     <br />
     <a href="https://gpr-system-340717.web.app/">View Demo</a>
