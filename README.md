@@ -24,10 +24,10 @@ Since I work additionally doing road traffic measurements, I've created simple c
 I know how making traffic surveys can be hard and arduous, especially when you work eight or ten hours a day in normal work. Thats why I always look for better and easier ways to make as much surveys as possible. Work smart ~~not~~ **AND** hard!
 
 Main user assumptions:
-* You should be able to make faster surveys in 15 minutes intervals,
-* There is no more need to manualy create or rewrite result, from now just copy and paste them to Excel file,
-* You have always access to your counted surveys,
-* You can't change once done survey,
+* User is able to count in 15 minutes intervals,
+* Result can be copy and paste to templete Excel file,
+* User have always access to counted surveys,
+* User can't modify once done survey,
 
 ##### not yet implemented feature
 
