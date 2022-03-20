@@ -53,6 +53,8 @@ Login: user@test.pl
 <br />
 Password: KCLrDb%YE$dl
 
+You login as Jan Kowalski.
+
 #### Important!
 <img src="./dontclick.png" width="20"/> Please do not end survey after try counter, as user You can't change survey status, this operation is **permanent.** 
 <!-- USAGE EXAMPLES -->
