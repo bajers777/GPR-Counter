@@ -1,10 +1,9 @@
 import React from 'react';
-import ModalOverlay from '../../modals/ModalOverlay';
 import ResultDirection from './ResultDirection';
 import { ShortcutsIcon } from '../../../assets/icons/icons';
 
 const ResultNavbar = props => {
-    const { filterOption, setFilter, handleModalVisibility, setPathValue, modalData } = props;
+    const { setFilter, handleModalVisibility, setPathValue, modalData } = props;
 
     return (
         <div className="result-navbar">
